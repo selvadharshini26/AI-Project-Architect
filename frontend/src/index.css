@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-canvas text-slate-light font-body antialiased;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: -1px -1px;
+  }
+
+  ::selection {
+    @apply bg-brass/30 text-paper;
+  }
+
+  :focus-visible {
+    outline: 2px solid #c89b3c;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* A "drawing sheet": cream blueprint paper with crosshair registration
+     marks at each corner, used for cards and content panels. */
+  .sheet {
+    @apply relative bg-paper text-ink rounded-sm;
+    box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.55);
+  }
+
+  .sheet::before,
+  .sheet::after,
+  .sheet .crosshair-tr,
+  .sheet .crosshair-bl {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+  }
+
+  .sheet::before {
+    top: 6px;
+    left: 6px;
+    border-top: 1.5px solid rgba(27, 36, 48, 0.35);
+    border-left: 1.5px solid rgba(27, 36, 48, 0.35);
+  }
+
+  .sheet::after {
+    bottom: 6px;
+    right: 6px;
+    border-bottom: 1.5px solid rgba(27, 36, 48, 0.35);
+    border-right: 1.5px solid rgba(27, 36, 48, 0.35);
+  }
+
+  .eyebrow {
+    @apply font-mono text-[11px] tracking-[0.2em] uppercase text-brass;
+  }
+
+  .eyebrow-dim {
+    @apply font-mono text-[11px] tracking-[0.2em] uppercase text-slate;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-brass px-5 py-2.5
+      font-mono text-[13px] font-medium uppercase tracking-wider text-canvas
+      transition-colors hover:bg-brass-bright disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-line
+      bg-transparent px-5 py-2.5 font-mono text-[13px] font-medium uppercase tracking-wider
+      text-slate-light transition-colors hover:border-brass/60 hover:text-brass;
+  }
+
+  .field-label {
+    @apply mb-1.5 block font-mono text-[11px] uppercase tracking-[0.15em] text-slate;
+  }
+
+  .field-input {
+    @apply w-full rounded-sm border border-line bg-panel px-3.5 py-2.5 text-sm text-slate-light
+      placeholder:text-slate/50 focus:border-brass/60;
+  }
+
+  /* Title block strip, styled after the info block on an engineering drawing */
+  .title-block {
+    @apply grid grid-cols-2 gap-x-6 gap-y-2 border-t border-ink/15 bg-paper-dim/60 px-6 py-4 sm:grid-cols-4;
+  }
+
+  .title-block dt {
+    @apply font-mono text-[10px] uppercase tracking-[0.15em] text-ink/45;
+  }
+
+  .title-block dd {
+    @apply font-mono text-[12px] text-ink/80;
+  }
+}

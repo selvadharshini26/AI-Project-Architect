@@ -1,0 +1,15 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/ai_project_architect_dev
+
+app:
+  jwt:
+    secret: dev-only-secret-please-change-me-1234567890-abcdefgh
+
+  gemini:
+    api-key: AIzaSyAbCdEfGhIjKlMnOpQrStUvWxYz123456789
+
+logging:
+  level:
+    com.projectarchitect: DEBUG
