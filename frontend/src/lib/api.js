@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+// In Docker, VITE_API_BASE_URL is empty so axios uses relative paths
+// (nginx proxies /api/* to the backend). In local dev it points to localhost:8080.
+const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8080';
 
 export const api = axios.create({
   baseURL: BASE_URL,
